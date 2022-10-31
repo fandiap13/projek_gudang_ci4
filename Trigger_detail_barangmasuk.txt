@@ -1,0 +1,13 @@
+CREATE 
+TRIGGER `db_gudang`.`tri_tambah_stok_barang` AFTER INSERT ON `db_gudang`.`detail_barangmasuk` FOR EACH ROW
+BEGIN
+UPDATE
+barang
+SET
+barang.brgstok = barang.brgstok + new.detjml WHERE barang.brgkode = new.detbrgkode;
+END $$
+DELIMITER;
+
+
+// new
+CREATE TRIGGER `tri_tambah_stok_barang` AFTER INSERT ON `temp_barangmasuk` FOR EACH ROW BEGIN UPDATE barang SET barang.brgstok = barang.brgstok + new.detjml WHERE barang.brgkode = new.detbrgkode; END
